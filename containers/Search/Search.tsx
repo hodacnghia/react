@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import {Product} from '../../services/productServices'
 import ProductTable from '../../pages/Products/Content/producttable'
 import {connect} from 'react-redux'
-import * as actionType from '../../store/actions'
+import * as actionType from '../../store/actions/actionType'
 
 interface IProps {
     view: boolean;

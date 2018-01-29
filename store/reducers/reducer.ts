@@ -1,5 +1,5 @@
-import * as actionType from './actions'
-import productServices,{Product} from '../services/productServices'
+import * as actionType from '../actions/actionType'
+import productServices,{Product} from '../../services/productServices'
 const products = productServices.generate();
 interface IState {
 

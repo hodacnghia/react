@@ -9,7 +9,7 @@ import Vendors from '../../services/vendorServices'
 import Content from './Content'
 import SideBar from './Sidebar'
 import Aux from '../../hoc/Aux'
-import searchReducer from '../../store/reducer'
+import searchReducer from '../../store/reducers/reducer'
 
 
 
