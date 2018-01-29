@@ -17,13 +17,24 @@ import searchReducer from '../../store/reducers/reducer'
 const composeEnhancers = compose;
 
 const rootReducer = combineReducers({
-    search: searchReducer,
+    sReducer: searchReducer,
 });
+const logger = (store: any) => {
+    return (next: any) => {
+        return (action: any) => {
+            console.log('[Middleware] Dispatching', action);
+            const result = next(action);
+            console.log('[Middleware] next state', store.getState());
+            return result;
+        }
+    }
+};
 
 
 const store = createStore(rootReducer, composeEnhancers(
-    applyMiddleware(thunk)
+    applyMiddleware(logger, thunk)
 ));
+
 
 const Background = styled.section`
     background: red;

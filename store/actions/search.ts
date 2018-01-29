@@ -33,10 +33,21 @@ export const searchItemStart = () => {
 export const searchItem = (searchKey: any) => {
     return (dispatch: any) => {
         dispatch(searchItemStart());
+        var displayedContacts = products.filter((el) => {
+            var searchValue = el.name.toLowerCase();
 
+            return searchValue.indexOf(searchKey) !== -1;
+        });
 
-    };
+        if (displayedContacts.length !== 0) {
+            dispatch(searchItemSuccess(displayedContacts))
+        } else {
+            dispatch(searchItemFail("arrSearch"))
+        }
+    }
+
 };
+
 
 export const searchInit = () => {
     return {

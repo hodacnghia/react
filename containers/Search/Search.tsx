@@ -11,12 +11,13 @@ interface IProps {
     data: Product[],
     displayedProducts: Product[],
     onSearch: any,
-    search: boolean
-
+    search: boolean,
 }
 interface IState {
     displayedProducts: Product[],
-    search: boolean
+    search: boolean,
+    sReducer: any
+
 
 }
 class Search extends React.Component<IProps> {
@@ -25,6 +26,7 @@ class Search extends React.Component<IProps> {
     render() {
         return (
         <div>
+ 
         <input type = "text" 
             placeholder = "Search ..."
             onChange = {event => {
@@ -32,15 +34,15 @@ class Search extends React.Component<IProps> {
                 this.props.onSearch(event.target.value); // <-- Propagate the event
               }} autoFocus> 
         </input>
-        <ProductTable view={this.props.view} data={this.props.search === true ? this.props.displayedProducts : a } ></ProductTable>        </div>
+        <ProductTable view={this.props.view}  data={this.props.displayedProducts } ></ProductTable>        </div>
         )
     }
 }
 
 const mapStateToProps = (state: IState) => {
     return{
-        displayedProducts: state.displayedProducts,
-        search: state.search
+        displayedProducts: state.sReducer.displayedProducts,
+        search: state.sReducer.search
     }
 }
 const mapDispatchToProps = (dispatch: any) => {

@@ -20,22 +20,8 @@ const searchInit = ( state: any, action: any ) => {
 };
 
 const searchItemStart = ( state: any, action: any ) => {
-    let arrSearch: Product[] = [];
-    const displayedProducts = products.filter((el: Product, index) => {
-        const searchValue = el.name.toLowerCase();
-        console.log(searchValue);
-        console.log(el);
-        console.log(searchValue.indexOf(action.dataSearch));
-        if (searchValue.indexOf(action.dataSearch) !== -1) {
-            arrSearch.push(el);
-            console.log(el, "123");
-        } 
-    })
-    console.log(updateObject( state, { 
-        displayedProducts: arrSearch,
-        search: true}));
+    
     return updateObject( state, { 
-        displayedProducts: arrSearch,
         search: true,
     } );
 };
@@ -49,7 +35,7 @@ const searchItemSuccess = ( state: any, action: any ) => {
 };
 
 const searchItemFail = ( state: any, action: any ) => {
-    return updateObject( state, { loading: false } );
+    return updateObject( state, { search: false } );
 };
 const reducer = ( state = initialState, action: any ) => {
     switch ( action.type ) {
