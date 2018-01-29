@@ -1,43 +1,38 @@
 import Link from 'next/link'
 import * as React from 'react'
 import styled from 'styled-components'
-import {Product} from '../../services/productServices'
+import product, {Product} from '../../services/productServices'
 import ProductTable from '../../pages/Products/Content/producttable'
 import {connect} from 'react-redux'
-import * as actionType from '../../store/actions/actionType'
-
+import * as actions from '../../store/actions/index'
+const a = product.generate();
 interface IProps {
     view: boolean;
     data: Product[],
     displayedProducts: Product[],
     onSearch: any,
+    search: boolean
 
 }
 interface IState {
     displayedProducts: Product[],
+    search: boolean
+
 }
 class Search extends React.Component<IProps> {
-    state = {
-        displayedContacts: this.props.data
-    }
-      handleSearch =(event:any) => {
-        const searchQuery = event.target.value.toLowerCase();
-        const displayedProducts = this.props.data.filter((el)  =>{
-          const searchValue = el.name.toLowerCase();
-    
-          return searchValue.indexOf(searchQuery) !== -1;
-        });
-    
-        this.props.onSearch(displayedProducts)    
-      }
+
+
     render() {
         return (
         <div>
         <input type = "text" 
             placeholder = "Search ..."
-            onChange = {this.handleSearch} autoFocus> 
+            onChange = {event => {
+                console.log("This is the new value of field myField: " + event.target.value);
+                this.props.onSearch(event.target.value); // <-- Propagate the event
+              }} autoFocus> 
         </input>
-        <ProductTable view={this.props.view} data={this.props.displayedProducts} ></ProductTable>        </div>
+        <ProductTable view={this.props.view} data={this.props.search === true ? this.props.displayedProducts : a } ></ProductTable>        </div>
         )
     }
 }
@@ -45,12 +40,12 @@ class Search extends React.Component<IProps> {
 const mapStateToProps = (state: IState) => {
     return{
         displayedProducts: state.displayedProducts,
+        search: state.search
     }
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        onSearch: (dataSearch: Product[]) => dispatch({type: actionType.SEARCH, data: dataSearch }),
-    
+        onSearch: (searchData: string) => dispatch(actions.searchItem(searchData) ),
 
     }
 }

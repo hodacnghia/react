@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import * as React from 'react'
 import {createStore, applyMiddleware, combineReducers, compose} from 'redux'
+import thunk from 'redux-thunk';
+
 import {Provider} from 'react-redux'
 import styled from 'styled-components'
 import Categories from '../../services/categoryServices'
@@ -12,14 +14,16 @@ import Aux from '../../hoc/Aux'
 import searchReducer from '../../store/reducers/reducer'
 
 
+const composeEnhancers = compose;
 
 const rootReducer = combineReducers({
     search: searchReducer,
 });
-const store = createStore(rootReducer );const logger = (store: any) => {
 
-}
 
+const store = createStore(rootReducer, composeEnhancers(
+    applyMiddleware(thunk)
+));
 
 const Background = styled.section`
     background: red;

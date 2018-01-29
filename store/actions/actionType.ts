@@ -1,1 +1,4 @@
-export const SEARCH = 'SEARCH';
+export const SEARCH_ITEM_SUCCESS = 'SEARCH_ITEM_SUSSCES';
+export const SEARCH_ITEM_FAIL = 'SEARCH_ITEM_FAILS';
+export const SEARCH_ITEM_START = 'SEARCH_ITEM_START';
+export const SEARCH_INIT = 'SEARCH_INIT';

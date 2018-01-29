@@ -15,7 +15,7 @@ class ProductWide extends React.Component<IProps > {
     render() {
         return (
             < div>
-                   {this.props.products.map(product => (
+                   {this.props.products.map((product) => (
 
                     <div>
                         <p>{product.name}</p>
